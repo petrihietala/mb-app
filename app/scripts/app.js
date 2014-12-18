@@ -36,4 +36,4 @@ var app = angular
         redirectTo: '/'
       });
   })
-  .constant('FIREBASE_URL', 'https://fiery-heat-2412.firebaseio.com');
+  .constant('FIREBASE_URL', 'https://marketbasket.firebaseio.com');

@@ -5,7 +5,7 @@
 'use strict';
 
 app.controller('PostsCtrl', function ($scope, PostService) {
-  $scope.post = {url: 'http://', title: ''};
+  $scope.post = {title: '', done: false};
   $scope.posts = PostService.all;
 
   /*$scope.submitPost = function () {
@@ -17,4 +17,9 @@ app.controller('PostsCtrl', function ($scope, PostService) {
   $scope.deletePost = function (post) {
     PostService.delete(post);
   };
+
+  $scope.setDone = function (post) {
+    PostService.setDone(post);
+  }
+
 });

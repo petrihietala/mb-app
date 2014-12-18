@@ -1,0 +1,12 @@
+.itemmixin (@a) when (@a = true) {
+  text-decoration: line-through;
+  color: darkgray;
+}
+.itemmixin (@a) when (@a = false) {
+
+}
+
+
+.itemdone { .itemmixin(true) }
+.item { .itemmixin(false) }
+

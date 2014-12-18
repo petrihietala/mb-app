@@ -4,14 +4,15 @@
     </div>
     <div class="col-md-9 col-xs-11">
 
-      <div class="jepjep">
+      <div>
         <!--<a ng-href="{{ post.url }}">
           {{ post.title }}
           <span class="url">({{ post.url }})</span>
         </a>-->
-        <span>{{ post.title }}</span>
-        &mdash;
-        <a ng-click="deletePost(post)">delete</a>
+        <span ng-class="{itemdone: post.done}">{{ post.title }}</span>
+        <span ng-hide="post.done" class="pull-right">
+          <!--&mdash;--> <a ng-click="setDone(post)" >done</a>
+        </span>
       </div>
       <div>
         <!--<span>submitted by <a ng-href="#/users/{{ post.creatorUID }}">{{ post.creator }}</a></span>
