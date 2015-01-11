@@ -1,6 +1,5 @@
-<input type="checkbox"  ng-model="hideDone" ng-click="toggleHideDone()">
 <div class="container">
-  <div class="post row" ng-repeat="post in getPosts(hideDone)">
+  <div class="post row" ng-repeat="post in getPosts(storage.donehidden)">
     <div class="col-xs-1">
     </div>
     <div class="col-md-9 col-xs-11">

@@ -1,7 +1,13 @@
 'use strict';
 
-app.controller('NavCtrl', function ($scope, $location, PostService) {
+app.controller('NavCtrl', function ($scope, $location, PostService, $localStorage) {
     $scope.post = {title: '', done: false};
+
+        $scope.storage = $localStorage.$default({
+            donehidden: false
+        });
+
+        $scope.hideDone = $scope.storage.donehidden;
 
     $scope.submitPost = function () {
       PostService.create($scope.post).then(function (ref) {
@@ -13,7 +19,6 @@ app.controller('NavCtrl', function ($scope, $location, PostService) {
     $scope.removeDonez = function () {
         PostService.removeDone();
     };
-
 
 
   }

@@ -12,7 +12,13 @@ app.factory('PostService', function ($firebase, FIREBASE_URL) {
   var PostService = {
     all: posts,
     create: function (post) {
-      return posts.$add(post);
+
+       var p = posts;
+      if (post.title != "") {
+        p = posts.$add(post);
+      }
+
+      return p;
     },
     get: function (postId) {
       return $firebase(ref.child('posts').child(postId)).$asObject();
