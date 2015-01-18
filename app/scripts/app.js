@@ -1,10 +1,6 @@
 'use strict';
 
 /**
- * @ngdoc overview
- * @name angNewsApp
- * @description
- * # angNewsApp
  *
  * Main module of the application.
  */
@@ -13,7 +9,7 @@
 /* exported app */
 
 var app = angular
-  .module('angNewsApp', [
+  .module('mb-app', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
