@@ -8,7 +8,7 @@
 
 app.factory('ItemService', function ($firebase, FIREBASE_URL) {
     var ref = new Firebase(FIREBASE_URL);
-    var items = $firebase(ref.child('posts')).$asArray();
+    var items = $firebase(ref.child('items')).$asArray();
 
     var ItemService = {
         all: items,
@@ -22,7 +22,7 @@ app.factory('ItemService', function ($firebase, FIREBASE_URL) {
             return i;
         },
         get: function (itemId) {
-            return $firebase(ref.child('posts').child(itemId)).$asObject();
+            return $firebase(ref.child('items').child(itemId)).$asObject();
         },
         delete: function (item) {
             return items.$remove(item);
