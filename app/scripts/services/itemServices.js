@@ -10,6 +10,8 @@ app.factory('ItemService', function ($firebase, FIREBASE_URL) {
     var ref = new Firebase(FIREBASE_URL);
     var items = $firebase(ref.child('items')).$asArray();
 
+    var selectedItem = null;
+
     var ItemService = {
         all: items,
         create: function (item) {
@@ -33,14 +35,19 @@ app.factory('ItemService', function ($firebase, FIREBASE_URL) {
         },
         removeDone: function () {
 
-            var doneItems = items.filter(function (ref) {
-                return ref.done
+            var doneItems = items.filter(function (item) {
+                return item.done
             });
 
             $.each(doneItems, function() {
                 ItemService.delete(this);
             });
-        }
+        },
+        setSelectedItem: function(item) {
+            selectedItem = item;
+        },
+        selectedItem: selectedItem
+
     };
 
     return ItemService;

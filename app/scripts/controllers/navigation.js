@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('NavCtrl', function ($scope, $location, ItemService, $localStorage) {
-    $scope.item = {title: '', done: false};
+    $scope.item = ItemService.selectedItem;//{title: '', done: false};
 
         $scope.storage = $localStorage.$default({
             donehidden: false
@@ -20,6 +20,9 @@ app.controller('NavCtrl', function ($scope, $location, ItemService, $localStorag
         ItemService.removeDone();
     };
 
+
+
+    //$scope.$watch(function() {return ItemService.selectedItem}, function(newValue) { $scope.item = newValue});
 
   }
 );

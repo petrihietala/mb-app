@@ -5,7 +5,7 @@
 'use strict';
 
 app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
-    $scope.item = {title: '', done: false};
+    $scope.item = ItemService.selectedItem;//{title: '', done: false};
     $scope.items = ItemService.all;
 
     //$scope.hideDone = hideDone;
@@ -40,5 +40,10 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
     $scope.hideDoneChanged = function (ref) {
         $scope.storage.donehidden = ref;
     }
+
+    $scope.selectItem = function (item) {
+        ItemService.selectedItem = item;
+    }
+
 
 });

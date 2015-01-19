@@ -2,3 +2,53 @@
   text-decoration: line-through;
   color: darkgray;
 }
+
+.navitem {
+  margin-right: 20px;
+}
+
+input[type='text'],
+textarea {
+  font-size: 16px;
+}
+
+.item-list.ng-enter,
+.item-list.ng-leave,
+.item-list.ng-move {
+  -webkit-transition: 0.2s linear all;
+  -moz-transition: 0.2s linear all;
+  -o-transition: 0.2s linear all;
+  transition: 0.2s linear all;
+}
+
+.item-list.ng-enter {
+  -webkit-transition: 0.0s linear all;
+  -moz-transition: 0.0s linear all;
+  -o-transition: 0.0s linear all;
+  transition: 0.0s linear all;
+}
+
+.item-list.ng-enter,
+.item-list.ng-move {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.item-list.ng-move.ng-move-active,
+.item-list.ng-enter.ng-enter-active {
+  opacity: 1;
+  height: 60px;
+}
+
+.item-list.ng-leave {
+  opacity: 1;
+  overflow: hidden;
+}
+
+.item-list.ng-leave.ng-leave-active {
+  opacity: 0;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
