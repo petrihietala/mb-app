@@ -4,12 +4,12 @@
         </div>
         <div class="col-md-9 col-xs-11">
             <div class="clearfix">
-                <span ng-class="{itemdone: item.done || item.undoConfirmEnabled}">
+                <span ng-class="{itemdone: item.done || undoItemId == item.$id}">
                     {{ item.title }}
                 </span>
-                <input type="checkbox" ng-hide="item.undoConfirmEnabled" ng-model="item.done" class="pull-right" ng-click="update(item)">
+                <input type="checkbox" ng-hide="undoItemId == item.$id" ng-model="item.done" class="pull-right" ng-click="update(item)">
 
-                <div class="btn-group pull-right" role="group" ng-show="item.undoConfirmEnabled">
+                <div class="btn-group pull-right" role="group" ng-show="undoItemId == item.$id">
                     <button type="button" class="btn btn-success btn-xs confirmButton" ng-click="addConfirmed(item)">Add</button>
                     <button type="button" class="btn btn-default btn-xs" ng-click="cancelAdd(item)">Cancel</button>
                 </div>

@@ -7,9 +7,7 @@
 app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
     $scope.item = ItemService.selectedItem;//{title: '', done: false};
     $scope.items = ItemService.all;
-
-
-    //$scope.hideDone = hideDone;
+    $scope.undoItemId = null;
 
     $scope.storage = $localStorage.$default({
         donehidden: false
@@ -39,17 +37,17 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
             ItemService.update(item);
         }
         else {
-            item.undoConfirmEnabled = true;
+            $scope.undoItemId = item.$id;
         }
     }
 
     $scope.cancelAdd = function(item) {
         item.done = true;
-        item.undoConfirmEnabled = false;
+        $scope.undoItemId = null;
     }
 
     $scope.addConfirmed = function(item) {
-        item.undoConfirmEnabled = false;
+        $scope.undoItemId = null;
         ItemService.update(item);
     }
 
