@@ -71,6 +71,7 @@ app.controller('ItemsCtrl', ["$scope", "ItemService", "$localStorage", function 
 
     $scope.update = function (item) {
         if(item.done) {
+            $scope.undoItemId = null;
             ItemService.update(item);
         }
         else {
