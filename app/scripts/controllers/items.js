@@ -33,17 +33,24 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
         ItemService.delete(item);
     };
 
-    $scope.setDone = function (item) {
-        ItemService.setDone(item);
-    }
-
-    $scope.hideDoneChanged = function (ref) {
-        $scope.storage.donehidden = ref;
+    $scope.update = function (item) {
+        if(!item.done) {
+            if (confirm("Are you sure?")) {
+                ItemService.update(item);
+            }
+            else {
+                item.done = true;
+            }
+        }
+        else {
+            ItemService.update(item);
+        }
     }
 
     $scope.selectItem = function (item) {
         ItemService.selectedItem = item;
     }
+
 
 
 });

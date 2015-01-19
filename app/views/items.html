@@ -1,4 +1,4 @@
-<div class="container">
+<div class="">
     <div class="item row item-list" ng-repeat="item in getItems(storage.donehidden)">
         <div class="col-xs-1">
         </div>
@@ -7,9 +7,11 @@
                 <span ng-class="{itemdone: item.done}">
                     {{ item.title }}
                 </span>
-                <span ng-hide="item.done" class="pull-right">
-                  <!--&mdash;--> <a ng-click="setDone(item)" >done</a>
-                </span>
+                <input type="checkbox" ng-model="item.done" class="pull-right" ng-click="update(item)">
+
+                <!--<span ng-hide="item.done" class="pull-right">
+                   <a ng-click="setDone(item)" >done</a>
+                </span>-->
             </div>
             <div>
             </div>

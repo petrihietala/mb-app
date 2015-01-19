@@ -29,8 +29,7 @@ app.factory('ItemService', function ($firebase, FIREBASE_URL) {
         delete: function (item) {
             return items.$remove(item);
         },
-        setDone: function (item) {
-            item.done = true;
+        update: function (item) {
             return items.$save(item);
         },
         removeDone: function () {
