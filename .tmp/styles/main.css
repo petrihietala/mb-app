@@ -7,6 +7,9 @@ body {
   text-decoration: line-through;
 }
 
+.confirmButton {
+
+}
 
 /* NAV BAR */
 .nav-pic {
@@ -17,6 +20,7 @@ body {
 
 /* MAIN ITEMS PAGE */
 .item {
+  font-size: 16px;
   background: #fff;
   padding:15px 0;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -123,3 +127,4 @@ textarea {
   padding-top: 0;
   padding-bottom: 0;
 }
+

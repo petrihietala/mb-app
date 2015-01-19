@@ -8,6 +8,7 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
     $scope.item = ItemService.selectedItem;//{title: '', done: false};
     $scope.items = ItemService.all;
 
+
     //$scope.hideDone = hideDone;
 
     $scope.storage = $localStorage.$default({

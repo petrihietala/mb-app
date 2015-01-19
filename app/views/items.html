@@ -3,13 +3,16 @@
         <div class="col-xs-1">
         </div>
         <div class="col-md-9 col-xs-11">
-            <div>
+            <div class="clearfix">
                 <span ng-class="{itemdone: item.done || item.undoConfirmEnabled}">
                     {{ item.title }}
                 </span>
                 <input type="checkbox" ng-hide="item.undoConfirmEnabled" ng-model="item.done" class="pull-right" ng-click="update(item)">
-                <button type="button" ng-show="item.undoConfirmEnabled" class="pull-right btn btn-default btn-xs" ng-click="cancelAdd(item)">Cancel</button>
-                <button type="button" ng-show="item.undoConfirmEnabled" class="pull-right btn btn-success btn-xs" ng-click="addConfirmed(item)">Add</button>
+
+                <div class="btn-group pull-right" role="group" ng-show="item.undoConfirmEnabled">
+                    <button type="button" class="btn btn-success btn-xs confirmButton" ng-click="addConfirmed(item)">Add</button>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="cancelAdd(item)">Cancel</button>
+                </div>
                     <!--<span ng-hide="item.done" class="pull-right">
                    <a ng-click="setDone(item)" >done</a>
                 </span>-->
@@ -19,3 +22,4 @@
         </div>
     </div>
 </div>
+
