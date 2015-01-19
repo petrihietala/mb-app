@@ -34,17 +34,22 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
     };
 
     $scope.update = function (item) {
-        if(!item.done) {
-            if (confirm("Are you sure?")) {
-                ItemService.update(item);
-            }
-            else {
-                item.done = true;
-            }
-        }
-        else {
+        if(item.done) {
             ItemService.update(item);
         }
+        else {
+            item.undoConfirmEnabled = true;
+        }
+    }
+
+    $scope.cancelAdd = function(item) {
+        item.done = true;
+        item.undoConfirmEnabled = false;
+    }
+
+    $scope.addConfirmed = function(item) {
+        item.undoConfirmEnabled = false;
+        ItemService.update(item);
     }
 
     $scope.selectItem = function (item) {
