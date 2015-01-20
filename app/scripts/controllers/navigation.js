@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('NavCtrl', function ($scope, $location, ItemService, $localStorage) {
-    $scope.item = ItemService.selectedItem;//{title: '', done: false};
+    $scope.item = {title: '', done: false};
     $scope.isEditModeEnabled = false;
 
         $scope.storage = $localStorage.$default({
@@ -21,8 +21,9 @@ app.controller('NavCtrl', function ($scope, $location, ItemService, $localStorag
     };
 
 
-
-    $scope.$watch(function() {return $scope.isEditModeEnabled}, function(newValue) { ItemService.isEditModeEnabled = newValue});
+    $scope.$watch(function() {return $scope.isEditModeEnabled}, function(newValue) {
+        ItemService.isEditModeEnabled = newValue
+    });
 
   }
 );

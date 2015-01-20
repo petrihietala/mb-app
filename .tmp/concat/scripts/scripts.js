@@ -42,7 +42,6 @@ var app = angular
 'use strict';
 
 app.controller('ItemsCtrl', ["$scope", "ItemService", "$localStorage", function ($scope, ItemService, $localStorage) {
-    $scope.item = ItemService.selectedItem;//{title: '', done: false};
     $scope.items = ItemService.all;
     $scope.undoItemId = null;
     $scope.isEditModeEnabled = false;
@@ -76,6 +75,7 @@ app.controller('ItemsCtrl', ["$scope", "ItemService", "$localStorage", function 
             ItemService.update(item);
         }
         else {
+            item.done = true;
             $scope.undoItemId = item.$id;
         }
     }
@@ -86,6 +86,7 @@ app.controller('ItemsCtrl', ["$scope", "ItemService", "$localStorage", function 
     }
 
     $scope.addConfirmed = function(item) {
+        item.done = false;
         $scope.undoItemId = null;
         ItemService.update(item);
     }
@@ -94,7 +95,9 @@ app.controller('ItemsCtrl', ["$scope", "ItemService", "$localStorage", function 
         ItemService.selectedItem = item;
     }
 
-    $scope.$watch(function() {return ItemService.isEditModeEnabled}, function(newValue) { $scope.isEditModeEnabled = newValue});
+    $scope.$watch(function() {return ItemService.isEditModeEnabled}, function(newValue) {
+        $scope.isEditModeEnabled = newValue
+    });
 
     $scope.$watch(function() {return $scope.isEditModeEnabled}, function(newValue) {
         if (newValue == false)
@@ -169,7 +172,7 @@ app.factory('ItemService', ["$firebase", "FIREBASE_URL", function ($firebase, FI
 'use strict';
 
 app.controller('NavCtrl', ["$scope", "$location", "ItemService", "$localStorage", function ($scope, $location, ItemService, $localStorage) {
-    $scope.item = ItemService.selectedItem;//{title: '', done: false};
+    $scope.item = {title: '', done: false};
     $scope.isEditModeEnabled = false;
 
         $scope.storage = $localStorage.$default({
@@ -189,8 +192,9 @@ app.controller('NavCtrl', ["$scope", "$location", "ItemService", "$localStorage"
     };
 
 
-
-    $scope.$watch(function() {return $scope.isEditModeEnabled}, function(newValue) { ItemService.isEditModeEnabled = newValue});
+    $scope.$watch(function() {return $scope.isEditModeEnabled}, function(newValue) {
+        ItemService.isEditModeEnabled = newValue
+    });
 
   }]
 );
