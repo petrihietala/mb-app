@@ -11,6 +11,7 @@ app.factory('ItemService', function ($firebase, FIREBASE_URL) {
     var items = $firebase(ref.child('items')).$asArray();
 
     var selectedItem = null;
+    var isEditModeEnabled = true;
 
     var ItemService = {
         all: items,
@@ -45,7 +46,11 @@ app.factory('ItemService', function ($firebase, FIREBASE_URL) {
         setSelectedItem: function(item) {
             selectedItem = item;
         },
-        selectedItem: selectedItem
+        selectedItem: selectedItem,
+        isEditModeEnabled: isEditModeEnabled,
+        setEditMode: function(ref) {
+            isEditModeEnabled = ref;
+        }
 
     };
 

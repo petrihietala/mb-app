@@ -8,6 +8,7 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
     $scope.item = ItemService.selectedItem;//{title: '', done: false};
     $scope.items = ItemService.all;
     $scope.undoItemId = null;
+    $scope.isEditModeEnabled = false;
 
     $scope.storage = $localStorage.$default({
         donehidden: false
@@ -56,6 +57,15 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
         ItemService.selectedItem = item;
     }
 
+    $scope.$watch(function() {return ItemService.isEditModeEnabled}, function(newValue) { $scope.isEditModeEnabled = newValue});
 
+    $scope.$watch(function() {return $scope.isEditModeEnabled}, function(newValue) {
+        if (newValue == false)
+        {
+           $scope.items.forEach(function(item) {
+               ItemService.update(item);
+           })
+        }
+    });
 
 });

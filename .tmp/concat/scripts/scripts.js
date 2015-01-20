@@ -45,6 +45,7 @@ app.controller('ItemsCtrl', ["$scope", "ItemService", "$localStorage", function 
     $scope.item = ItemService.selectedItem;//{title: '', done: false};
     $scope.items = ItemService.all;
     $scope.undoItemId = null;
+    $scope.isEditModeEnabled = false;
 
     $scope.storage = $localStorage.$default({
         donehidden: false
@@ -93,7 +94,16 @@ app.controller('ItemsCtrl', ["$scope", "ItemService", "$localStorage", function 
         ItemService.selectedItem = item;
     }
 
+    $scope.$watch(function() {return ItemService.isEditModeEnabled}, function(newValue) { $scope.isEditModeEnabled = newValue});
 
+    $scope.$watch(function() {return $scope.isEditModeEnabled}, function(newValue) {
+        if (newValue == false)
+        {
+           $scope.items.forEach(function(item) {
+               ItemService.update(item);
+           })
+        }
+    });
 
 }]);
 
@@ -110,6 +120,7 @@ app.factory('ItemService', ["$firebase", "FIREBASE_URL", function ($firebase, FI
     var items = $firebase(ref.child('items')).$asArray();
 
     var selectedItem = null;
+    var isEditModeEnabled = true;
 
     var ItemService = {
         all: items,
@@ -144,7 +155,11 @@ app.factory('ItemService', ["$firebase", "FIREBASE_URL", function ($firebase, FI
         setSelectedItem: function(item) {
             selectedItem = item;
         },
-        selectedItem: selectedItem
+        selectedItem: selectedItem,
+        isEditModeEnabled: isEditModeEnabled,
+        setEditMode: function(ref) {
+            isEditModeEnabled = ref;
+        }
 
     };
 
@@ -155,12 +170,12 @@ app.factory('ItemService', ["$firebase", "FIREBASE_URL", function ($firebase, FI
 
 app.controller('NavCtrl', ["$scope", "$location", "ItemService", "$localStorage", function ($scope, $location, ItemService, $localStorage) {
     $scope.item = ItemService.selectedItem;//{title: '', done: false};
+    $scope.isEditModeEnabled = false;
 
         $scope.storage = $localStorage.$default({
             donehidden: false
         });
 
-        $scope.hideDone = $scope.storage.donehidden;
 
     $scope.addItem = function () {
         ItemService.create($scope.item).then(function (ref) {
@@ -175,7 +190,7 @@ app.controller('NavCtrl', ["$scope", "$location", "ItemService", "$localStorage"
 
 
 
-    //$scope.$watch(function() {return ItemService.selectedItem}, function(newValue) { $scope.item = newValue});
+    $scope.$watch(function() {return $scope.isEditModeEnabled}, function(newValue) { ItemService.isEditModeEnabled = newValue});
 
   }]
 );

@@ -2,12 +2,12 @@
 
 app.controller('NavCtrl', function ($scope, $location, ItemService, $localStorage) {
     $scope.item = ItemService.selectedItem;//{title: '', done: false};
+    $scope.isEditModeEnabled = false;
 
         $scope.storage = $localStorage.$default({
             donehidden: false
         });
 
-        $scope.hideDone = $scope.storage.donehidden;
 
     $scope.addItem = function () {
         ItemService.create($scope.item).then(function (ref) {
@@ -22,7 +22,7 @@ app.controller('NavCtrl', function ($scope, $location, ItemService, $localStorag
 
 
 
-    //$scope.$watch(function() {return ItemService.selectedItem}, function(newValue) { $scope.item = newValue});
+    $scope.$watch(function() {return $scope.isEditModeEnabled}, function(newValue) { ItemService.isEditModeEnabled = newValue});
 
   }
 );
