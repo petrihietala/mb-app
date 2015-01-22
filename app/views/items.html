@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="item row item-list" ng-repeat="item in getItems(storage.donehidden)">
+    <div class="item row item-list" ng-repeat="item in getItems(storage.donehidden) | orderBy: orderVariable">
         <div class="clearfix">
             <span ng-class="{itemdone: item.done || undoItemId == item.$id}" ng-hide="isEditModeEnabled">
                 {{ item.title }}
@@ -12,9 +12,6 @@
                 <button type="button" class="btn btn-default btn-xs" ng-click="cancelAdd(item)">Cancel</button>
             </div>
             <input type="checkbox" ng-hide="undoItemId == item.$id || isEditModeEnabled" ng-model="item.done" class="pull-right" ng-click="update(item)">
-                <!--<span ng-hide="item.done" class="pull-right">
-               <a ng-click="setDone(item)" >done</a>
-            </span>-->
         </div>
     </div>
 </div>

@@ -21,6 +21,8 @@
 
 
     <div class="navbar-right">
+      <input type="checkbox" ng-model="storage.sortEnabled" ng-click="sortChanged()">
+      <label class="navitem">Order</label>
       <input  type="checkbox"  ng-model="isEditModeEnabled">
       <label class="navitem">Edit</label>
       <input  type="checkbox"  ng-model="storage.donehidden" >

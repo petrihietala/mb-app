@@ -8,6 +8,10 @@ app.controller('NavCtrl', function ($scope, $location, ItemService, $localStorag
             donehidden: false
         });
 
+        $scope.storage = $localStorage.$default({
+            sortEnabled: false
+        });
+
 
     $scope.addItem = function () {
         ItemService.create($scope.item).then(function (ref) {
