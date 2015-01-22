@@ -5,11 +5,9 @@
 'use strict';
 
 app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
-    $scope.items = ItemService.all;
     $scope.undoItemId = null;
     $scope.isEditModeEnabled = false;
     $scope.orderVariable = '';
-    $scope.huuhaa = true;
 
     $scope.storage = $localStorage.$default({
         donehidden: false,
@@ -18,12 +16,10 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
 
 
     $scope.hideDone = $scope.storage.donehidden;
-    //$scope.sortEnabled = $scope.storage.sortEnabled;
-
 
     $scope.getItems = function (hideDone) {
 
-        var items = $scope.items;
+        var items = ItemService.all;
 
         if (hideDone) {
             items = items.filter(function (ref) {
@@ -40,12 +36,14 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
 
     $scope.update = function (item) {
         if(item.done) {
+            $scope.undoItemId = item.$id;
+        }
+    }
+
+    $scope.update2 = function (item) {
+        if(item.done) {
             $scope.undoItemId = null;
             ItemService.update(item);
-        }
-        else {
-            item.done = true;
-            $scope.undoItemId = item.$id;
         }
     }
 

@@ -11,7 +11,7 @@
                 <button type="button" class="btn btn-success btn-xs confirmButton" ng-click="addConfirmed(item)">Add</button>
                 <button type="button" class="btn btn-default btn-xs" ng-click="cancelAdd(item)">Cancel</button>
             </div>
-            <input type="checkbox" ng-hide="undoItemId == item.$id || isEditModeEnabled" ng-model="item.done" class="pull-right" ng-click="update(item)">
+            <input type="checkbox" ng-hide="undoItemId == item.$id || isEditModeEnabled" ng-model="item.done" class="pull-right" ng-mousedown="update(item)" ng-click="update2(item)">
         </div>
     </div>
 </div>
