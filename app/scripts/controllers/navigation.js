@@ -14,6 +14,7 @@ app.controller('NavCtrl', function ($scope, $location, ItemService, $localStorag
 
 
     $scope.addItem = function () {
+        $scope.item.date = Date.now();
         ItemService.create($scope.item).then(function (ref) {
             $location.path('/items/' + ref.name());
             $scope.item = {title: '', done: false};

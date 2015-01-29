@@ -128,3 +128,21 @@ textarea {
   padding-bottom: 0;
 }
 
+.settings-element {
+    background:  #808080;
+    margin-top: 0px;
+    margin-top: 12px;
+    margin-left: -11px;
+    margin-right: -11px;
+    margin-bottom: -12px;
+    box-shadow: inset 3px 3px 10px 1px rgba(0,0,0,0.75);
+}
+
+.slide-element {
+    transition: .4s ease-in-out all;
+    height: 100px;
+    overflow: hidden;
+}
+.slide-element.ng-hide {
+    height:0;
+}

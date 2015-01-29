@@ -144,3 +144,26 @@ textarea {
   padding-bottom: 0;
 }
 
+.settings-element {
+    background:  #808080;
+    margin-top: 0px;
+    margin-top: 12px;
+    margin-left: -11px;
+    margin-right: -11px;
+    margin-bottom: -12px;
+    -webkit-box-shadow: inset 3px 3px 10px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 3px 3px 10px 1px rgba(0,0,0,0.75);
+    box-shadow: inset 3px 3px 10px 1px rgba(0,0,0,0.75);
+}
+
+.slide-element {
+    -webkit-transition: 0.4s ease-in-out all;
+    -moz-transition: 0.4s ease-in-out all;
+    -o-transition: 0.4s ease-in-out all;
+    transition: .4s ease-in-out all;
+    height: 100px;
+    overflow: hidden;
+}
+.slide-element.ng-hide {
+    height:0;
+}

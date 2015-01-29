@@ -6,6 +6,7 @@
 
 app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
     $scope.undoItemId = null;
+    $scope.openedItemId = null;
     $scope.isEditModeEnabled = false;
     $scope.orderVariable = '';
 
@@ -13,7 +14,6 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
         donehidden: false,
         sortEnabled: false
     });
-
 
     $scope.hideDone = $scope.storage.donehidden;
 
@@ -34,13 +34,13 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
         ItemService.delete(item);
     };
 
-    $scope.update = function (item) {
+    $scope.confirmAdd = function (item) {
         if(item.done) {
             $scope.undoItemId = item.$id;
         }
     }
 
-    $scope.update2 = function (item) {
+    $scope.update = function (item) {
         if(item.done) {
             $scope.undoItemId = null;
             ItemService.update(item);
@@ -54,6 +54,7 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
 
     $scope.addConfirmed = function(item) {
         item.done = false;
+        item.date = new Date();
         $scope.undoItemId = null;
         ItemService.update(item);
     }
@@ -62,7 +63,15 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
         ItemService.selectedItem = item;
     }
 
-
+    $scope.dbClickItem = function(item) {
+        if ($scope.openedItemId == item.$id)
+        {
+            $scope.openedItemId = null;
+        }
+        else {
+            $scope.openedItemId = item.$id;
+        }
+    }
 
     $scope.$watch(function() { return $scope.storage.sortEnabled}, function(newValue) {
         if (newValue) {

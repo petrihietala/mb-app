@@ -13,6 +13,7 @@ app.factory('ItemService', function ($firebase, FIREBASE_URL) {
     var selectedItem = null;
     var isEditModeEnabled = true;
 
+
     var ItemService = {
         all: items,
         create: function (item) {
