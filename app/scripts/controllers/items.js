@@ -5,25 +5,21 @@
 'use strict';
 
 app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
-    $scope.items = ItemService.all;
     $scope.undoItemId = null;
+    $scope.openedItemId = null;
     $scope.isEditModeEnabled = false;
     $scope.orderVariable = '';
-    $scope.huuhaa = true;
 
     $scope.storage = $localStorage.$default({
         donehidden: false,
         sortEnabled: false
     });
 
-
     $scope.hideDone = $scope.storage.donehidden;
-    //$scope.sortEnabled = $scope.storage.sortEnabled;
-
 
     $scope.getItems = function (hideDone) {
 
-        var items = $scope.items;
+        var items = ItemService.all;
 
         if (hideDone) {
             items = items.filter(function (ref) {
@@ -38,14 +34,16 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
         ItemService.delete(item);
     };
 
+    $scope.confirmAdd = function (item) {
+        if(item.done) {
+            $scope.undoItemId = item.$id;
+        }
+    }
+
     $scope.update = function (item) {
         if(item.done) {
             $scope.undoItemId = null;
             ItemService.update(item);
-        }
-        else {
-            item.done = true;
-            $scope.undoItemId = item.$id;
         }
     }
 
@@ -56,6 +54,7 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
 
     $scope.addConfirmed = function(item) {
         item.done = false;
+        item.date = new Date();
         $scope.undoItemId = null;
         ItemService.update(item);
     }
@@ -64,7 +63,15 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
         ItemService.selectedItem = item;
     }
 
-
+    $scope.dbClickItem = function(item) {
+        if ($scope.openedItemId == item.$id)
+        {
+            $scope.openedItemId = null;
+        }
+        else {
+            $scope.openedItemId = item.$id;
+        }
+    }
 
     $scope.$watch(function() { return $scope.storage.sortEnabled}, function(newValue) {
         if (newValue) {

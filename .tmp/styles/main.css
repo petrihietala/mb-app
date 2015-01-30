@@ -24,6 +24,10 @@ body {
   background: #fff;
   padding:12px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .info {
@@ -128,3 +132,26 @@ textarea {
   padding-bottom: 0;
 }
 
+.settings-element {
+    background:  paleturquoise;
+    margin-top: 0px;
+    margin-top: 12px;
+    margin-left: -12px;
+    margin-right: -12px;
+    margin-bottom: -12px;
+    box-shadow: inset 3px 3px 10px 1px rgba(0,0,0,0.75);
+}
+
+.selectedElement {
+  box-shadow: inset 1px 1px 6px 1px rgba(0,0,0,0.75);
+  background: lightcyan;
+}
+
+.slide-element {
+    transition: .4s ease-in-out all;
+    height: 100px;
+    overflow: hidden;
+}
+.slide-element.ng-hide {
+    height:0;
+}
