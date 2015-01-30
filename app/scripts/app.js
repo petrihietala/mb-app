@@ -33,4 +33,4 @@ var app = angular
         redirectTo: '/'
       });
   })
-  .constant('FIREBASE_URL', 'https://marketbasket.firebaseio.com');
+  .constant('FIREBASE_URL', 'https://marketbaskettest.firebaseio.com');
