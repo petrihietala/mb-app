@@ -8,7 +8,7 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
     $scope.undoItemId = null;
     $scope.openedItemId = null;
     $scope.isEditModeEnabled = false;
-    $scope.orderVariable = '';
+    $scope.orderVariable = '-date';
 
     $scope.storage = $localStorage.$default({
         donehidden: false,
@@ -75,10 +75,10 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
 
     $scope.$watch(function() { return $scope.storage.sortEnabled}, function(newValue) {
         if (newValue) {
-            $scope.orderVariable = 'done';
+            $scope.orderVariable = ['done', '-date'];
         }
         else {
-            $scope.orderVariable = '';
+            $scope.orderVariable = '-date';
         }
     });
 
