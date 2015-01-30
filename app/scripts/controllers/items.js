@@ -93,8 +93,5 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
         }
     });
 
-    $scope.click = function() {
-        alert("jep");
-    }
 
 });

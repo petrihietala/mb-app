@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="item row item-list" ng-class="{selectedElement: openedItemId == item.$id}" ng-repeat="item in getItems(storage.donehidden) | orderBy: orderVariable" ng-click="click()" ng-dblclick="dbClickItem(item)">
+    <div class="item row item-list" ng-class="{selectedElement: openedItemId == item.$id}" ng-repeat="item in getItems(storage.donehidden) | orderBy: orderVariable" ng-dblclick="dbClickItem(item)">
         <div class="clearfix" >
             <span ng-class="{itemdone: item.done || undoItemId == item.$id}" ng-hide="isEditModeEnabled">
                 {{ item.title }}
