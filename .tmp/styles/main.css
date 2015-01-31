@@ -7,8 +7,9 @@ body {
   text-decoration: line-through;
 }
 
-.confirmButton {
-
+.test {
+    padding: 12px;
+    margin: -12px;
 }
 
 /* NAV BAR */
