@@ -5,6 +5,7 @@
 'use strict';
 
 app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
+    $scope.items = ItemService.all;
     $scope.undoItemId = null;
     $scope.openedItemId = null;
     $scope.isEditModeEnabled = false;
@@ -19,7 +20,7 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
 
     $scope.getItems = function (hideDone) {
 
-        var items = ItemService.all;
+        var items = $scope.items;
 
         if (hideDone) {
             items = items.filter(function (ref) {

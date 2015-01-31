@@ -5,7 +5,7 @@
                 {{ item.title }}
             </span>
             <span ng-show="isEditModeEnabled">
-                <input class="form-control" type="text" ng-model="item.title">
+                <input class="form-control" type="text" ng-model="item.title" ng-click="$event.stopPropagation()">
             </span>
             <div class="btn-group pull-right" role="group" ng-show="undoItemId == item.$id" ng-dblclick="$event.stopPropagation()">
                 <button type="button" class="btn btn-success btn-xs confirmButton" ng-click="addConfirmed(item); $event.stopPropagation()">Add</button>
@@ -15,11 +15,11 @@
                 <input type="checkbox" ng-model="item.done" ng-mousedown="confirmAdd(item)" ng-click="update(item); $event.stopPropagation()" ng-dblclick="$event.stopPropagation()">
             </div>
         </div>
-        <div class="slide-element settings-element" ng-show="openedItemId == item.$id" ng-dblclick="$event.stopPropagation()">
-            <!--<div class="switch">
+        <div class="slide-element settings-element" ng-show="openedItemId == item.$id" ng-click="$event.stopPropagation()">
+<!--
                 <input id="toggle + {{item.$id}}" ng-model="item.done" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
                 <label for="toggle + {{item.$id}}"></label>
-            </div>-->
+-->
         </div>
     </div>
 </div>
