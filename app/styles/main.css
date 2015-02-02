@@ -157,7 +157,7 @@ textarea {
 }
 
 .settings-element {
-    background:  paleturquoise;
+    background:  #add8e6;
     margin-top: 0px;
     margin-top: 12px;
     margin-left: -12px;
@@ -186,6 +186,11 @@ textarea {
 .slide-element.ng-hide {
     height:0;
 }
+
+.settingItem {
+    margin: 20px;
+}
+
 
 .cmn-toggle {
   position: absolute;
