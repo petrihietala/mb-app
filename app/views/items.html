@@ -1,29 +1,35 @@
 <div class="container">
-    <div class="item row item-list" ng-class="{selectedElement: openedItemId == item.$id}" ng-repeat="item in getItems(storage.donehidden) | orderBy: orderVariable" ng-click="dbClickItem(item)">
-        <div class="clearfix" >
-            <span ng-class="{itemdone: item.done || undoItemId == item.$id}" ng-hide="isEditModeEnabled">
+    <div class="item row item-list" ng-class="{selectedElement: openedItemId == item.$id, firstItem: $first, lastItem: $last}" ng-repeat="item in getItems(storage.donehidden) | orderBy: orderVariable" ng-click="selectItem(item)">
+        <div class="" >
+            <span ng-class="{itemdone: item.done || undoItemId == item.$id}" ng-hide="editItemId == item.$id">
                 {{ item.title }}
             </span>
-            <span ng-show="isEditModeEnabled">
-                <input class="form-control" type="text" ng-model="item.title" ng-click="$event.stopPropagation()">
+            <span ng-show="editItemId == item.$id">
+                <input class="form-control editArea" type="text" ng-model="item.title" ng-click="$event.stopPropagation()">
             </span>
-            <div class="btn-group pull-right" role="group" ng-show="undoItemId == item.$id" ng-dblclick="$event.stopPropagation()">
+            <!--<div class="btn-group pull-right" role="group" ng-show="undoItemId == item.$id" ng-dblclick="$event.stopPropagation()">
                 <button type="button" class="btn btn-success btn-xs confirmButton" ng-click="addConfirmed(item); $event.stopPropagation()">Add</button>
                 <button type="button" class="btn btn-default btn-xs" ng-click="cancelAdd(item); $event.stopPropagation()">Cancel</button>
-            </div>
-            <div class="pull-right test" ng-hide="undoItemId == item.$id || isEditModeEnabled" ng-click="$event.stopPropagation()">
-                <input type="checkbox" ng-model="item.done" ng-mousedown="confirmAdd(item)" ng-click="update(item); $event.stopPropagation()" ng-dblclick="$event.stopPropagation()">
+            </div>-->
+            <div class="pull-right test" ng-hide="editItemId == item.$id" ng-click="$event.stopPropagation()">
+                <input type="checkbox" ng-model="item.done" ng-click="update(item); $event.stopPropagation()">
             </div>
         </div>
-        <div class="slide-element settings-element" ng-show="openedItemId == item.$id" ng-click="$event.stopPropagation()">
-            <button class="btn btn-default settingItem" ng-click="deleteItem(item)">Delete</button>
-<!--
-                <input id="toggle + {{item.$id}}" ng-model="item.done" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
-                <label for="toggle + {{item.$id}}"></label>
--->
+        <div class="slide-element settings-element" ng-class="{lastItem: $last}" ng-show="openedItemId == item.$id" ng-click="$event.stopPropagation()">
+
+                <div class="row settingArea">
+                    <button class="btn btn-sm btn-default settingsButton" ng-disabled="!item.done" ng-click="addConfirmed(item)">Undo</button>
+                    <button class="btn btn-sm btn-danger pull-right" ng-click="deleteItem(item)">Delete</button>
+                    <p class="pull-left settingsLabel">Edit</p>
+                    <div class="pull-left">
+                        <input id="toggle + {{item.$id}}" ng-model="jep" ng-checked="editItemId == item.$id" ng-click="selectEditItem(jep, item)"  class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
+                        <label for="toggle + {{item.$id}}"></label>
+                    </div>
+                </div>
         </div>
     </div>
 </div>
+
 
 
 

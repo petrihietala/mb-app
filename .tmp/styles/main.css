@@ -1,26 +1,16 @@
 body {
-  background: #F3F3F3;
+  background: #dcdcdc;
 }
 
 
-.done {
-  text-decoration: line-through;
-}
+
 
 .test {
     padding: 12px;
     margin: -12px;
 }
 
-.lastItem {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
- }
 
-.firstItem {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
 
 /* NAV BAR */
 .nav-pic {
@@ -108,43 +98,16 @@ textarea {
   font-size: 16px;
 }
 
-
-.item-list.ng-enter,
-.item-list.ng-leave,
-.item-list.ng-move {
-  transition: 0.2s linear all;
+.editArea {
+    margin-top: -6px;
+    margin-bottom: -6px;
 }
 
-.item-list.ng-enter {
-  transition: 0.1s linear all;
-}
 
-.item-list.ng-enter,
-.item-list.ng-move {
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-}
 
-.item-list.ng-move.ng-move-active,
-.item-list.ng-enter.ng-enter-active {
-  opacity: 1;
-}
-
-.item-list.ng-leave {
-  opacity: 1;
-  overflow: hidden;
-}
-
-.item-list.ng-leave.ng-leave-active {
-  opacity: 0;
-  height: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-}
 
 .settings-element {
-    background:  #add8e6;
+    background:  #80bbce;
     margin-top: 0px;
     margin-top: 12px;
     margin-left: -12px;
@@ -155,75 +118,35 @@ textarea {
 
 .selectedElement {
   box-shadow: inset 1px 1px 4px 1px rgba(0,0,0,0.75);
-  background: lightcyan;
-}
-
-.slide-element {
-    transition: .4s ease-in-out all;
-    height: 100px;
-    overflow: hidden;
-}
-.slide-element.ng-hide {
-    height:0;
-}
-
-.settingItem {
-    margin: 20px;
+  background: #add8e6;
 }
 
 
-.cmn-toggle {
-  position: absolute;
-  margin-left: -9999px;
-  visibility: hidden;
-}
-.cmn-toggle + label {
-  display: block;
-  position: relative;
-  cursor: pointer;
-  outline: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.selectedText {
+    color: #ffffff;
 }
 
-input.cmn-toggle-round-flat + label {
-  padding: 2px;
-  width: 120px;
-  height: 60px;
-  background-color: #dddddd;
-  border-radius: 60px;
-  transition: background 0.4s;
+
+
+.settingArea {
+    margin-left: 20px;
+    margin-right: 20px;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
-input.cmn-toggle-round-flat + label:before,
-input.cmn-toggle-round-flat + label:after {
-  display: block;
-  position: absolute;
-  content: "";
+
+.settingsButton {
+    margin-left: 10px;
+    margin-right: 10px;
 }
-input.cmn-toggle-round-flat + label:before {
-  top: 2px;
-  left: 2px;
-  bottom: 2px;
-  right: 2px;
-  background-color: #fff;
-  border-radius: 60px;
-  transition: background 0.4s;
+
+.settingsLabel {
+    padding-top: 3px;
+    color: #ffffff;
+    margin-left: 10px;
+    margin-right: 5px;
 }
-input.cmn-toggle-round-flat + label:after {
-  top: 4px;
-  left: 4px;
-  bottom: 4px;
-  width: 52px;
-  background-color: #dddddd;
-  border-radius: 52px;
-  transition: margin 0.4s, background 0.4s;
-}
-input.cmn-toggle-round-flat:checked + label {
-  background-color: #8ce196;
-}
-input.cmn-toggle-round-flat:checked + label:after {
-  margin-left: 60px;
-  background-color: #8ce196;
-}
+
+

@@ -1,0 +1,11 @@
+.slide-element {
+    -webkit-transition: 0.4s ease-in-out all;
+    -moz-transition: 0.4s ease-in-out all;
+    -o-transition: 0.4s ease-in-out all;
+    transition: .4s ease-in-out all;
+    height: 70px;
+    overflow: hidden;
+}
+.slide-element.ng-hide {
+    height:0;
+}
