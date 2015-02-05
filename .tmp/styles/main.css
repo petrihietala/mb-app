@@ -143,7 +143,8 @@ textarea {
 }
 
 .settingsLabel {
-    padding-top: 3px;
+    font-size: 12px;
+    padding-top: 6px;
     color: #ffffff;
     margin-right: 5px;
 }
