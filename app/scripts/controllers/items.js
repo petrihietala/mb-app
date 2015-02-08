@@ -7,7 +7,7 @@
 app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
     $scope.items = ItemService.all;
     $scope.undoItemId = null;
-    $scope.editItemId = null;
+    $scope.editItem = null;
     $scope.openedItemId = null;
     $scope.isEditModeEnabled = false;
     $scope.orderVariable = '';
@@ -44,7 +44,7 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
 
     $scope.update = function (item) {
         if(item.done) {
-            $scope.undoItemId = null;
+            //$scope.undoItemId = null;
             ItemService.update(item);
         }
         else
@@ -67,7 +67,11 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
 
 
     $scope.selectItem = function(item) {
-        $scope.editItemId = null;
+        if ($scope.editItem != null && $scope.editItem.$id != item.$id) {
+            ItemService.update($scope.editItem);
+        }
+
+        $scope.editItem = null;
         if ($scope.openedItemId == item.$id)
         {
             $scope.openedItemId = null;
@@ -86,13 +90,13 @@ app.controller('ItemsCtrl', function ($scope, ItemService, $localStorage) {
         }
     });
 
-    $scope.selectEditItem = function(jep, item) {
-        if (jep) {
-            $scope.editItemId = item.$id;
+    $scope.selectEditItem = function(isEditable, item) {
+        if (isEditable) {
+            $scope.editItem = item;
         }
         else {
             ItemService.update(item);
-            $scope.editItemId = null;
+            $scope.editItem = null;
         }
     }
 
